@@ -7,6 +7,7 @@ function ProductCreate() {
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
+        sku: "",
         title: "",
         description: "",
         price: "",
@@ -96,6 +97,9 @@ function ProductCreate() {
         <div className="product-create-container">
             <h2>Add New Product</h2>
             <form className="product-create-form" onSubmit={handleSubmit}>
+                <label>SKU</label>
+                <input type="text" name="sku" value={form.sku} onChange={handleChange} required />
+
                 <label>Title</label>
                 <input type="text" name="title" value={form.title} onChange={handleChange} required />
 

@@ -48,3 +48,7 @@ sequelize.authenticate()
     .catch((err) => {
         console.error('❌ Unable to connect to PostgreSQL:', err);
     });
+
+sequelize.sync({ force: true }).then(() => {
+    console.log("Database synced.");
+});

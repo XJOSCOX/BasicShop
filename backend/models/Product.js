@@ -1,7 +1,13 @@
+// backend/models/Product.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Product = sequelize.define('Product', {
+    sku: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
     title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,8 +34,8 @@ const Product = sequelize.define('Product', {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    imagePath: {
-        type: DataTypes.STRING, // e.g., /uploads/product123.jpg
+    image: {
+        type: DataTypes.STRING, // renamed from imagePath
         defaultValue: '',
     },
     quantitySold: {

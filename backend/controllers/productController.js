@@ -1,9 +1,18 @@
 // backend/controllers/productController.js
-const { Product } = require("../models/index");
+const { Product } = require("../models");
 
 exports.createProduct = async (req, res) => {
     try {
         const {
+            sku, title, description, price, quantity,
+            category, madeDate, expirationDate,
+            size, material, warranty, powerType
+        } = req.body;
+
+        const image = req.savedImageName || null;
+
+        const product = await Product.create({
+            sku,
             title,
             description,
             price,
@@ -14,32 +23,17 @@ exports.createProduct = async (req, res) => {
             size,
             material,
             warranty,
-            powerType
-        } = req.body;
-
-        const image = req.file ? req.file.filename : null;
-
-        const product = await Product.create({
-            title,
-            description,
-            price,
-            quantity,
-            category,
-            madeDate: madeDate || null,
-            expirationDate: expirationDate || null,
-            size: size || null,
-            material: material || null,
-            warranty: warranty || null,
-            powerType: powerType || null,
+            powerType,
             image
         });
 
         res.status(201).json(product);
-    } catch (err) {
-        console.error("Error creating product:", err);
-        res.status(500).json({ message: "Error creating product", error: err });
+    } catch (error) {
+        console.error("Error creating product:", error);
+        res.status(500).json({ error: "Failed to add product" });
     }
 };
+
 
 exports.getAllProducts = async (req, res) => {
     try {
