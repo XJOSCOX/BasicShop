@@ -36,7 +36,8 @@ app.get('/', (req, res) => {
 sequelize.authenticate()
     .then(async () => {
         console.log('✅ PostgreSQL connected successfully!');
-        await sequelize.sync({ alter: true }); // Creates/updates tables
+        await sequelize.sync({ force: true }); // Use ONLY in development
+ // Creates/updates tables
         app.listen(PORT, () =>
             console.log(`🚀 Server running on http://localhost:${PORT}`)
         );

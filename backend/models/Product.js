@@ -2,40 +2,48 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Product = sequelize.define('Product', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    sku: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    name: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     description: {
         type: DataTypes.TEXT,
     },
-    quantity: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-    },
     price: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    tags: {
-        type: DataTypes.ARRAY(DataTypes.STRING), // PostgreSQL-specific
+    stock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    category: {
+        type: DataTypes.STRING,
     },
     expirationDate: {
         type: DataTypes.DATE,
         allowNull: true,
     },
-}, {
-    timestamps: true,
+    isPerishable: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
+    imagePath: {
+        type: DataTypes.STRING, // e.g., /uploads/product123.jpg
+        defaultValue: '',
+    },
+    quantitySold: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    tags: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: [],
+    },
+    isAvailable: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    }
 });
 
 module.exports = Product;
