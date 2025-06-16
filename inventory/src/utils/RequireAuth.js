@@ -1,7 +1,8 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-const RequireAuth = ({ allowedRoles, children }) => {
+const RequireAuth = ({ children, allowedRoles }) => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
     const location = useLocation();
@@ -10,11 +11,26 @@ const RequireAuth = ({ allowedRoles, children }) => {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    if (!allowedRoles.includes(user.role)) {
+    try {
+        const decoded = jwtDecode(token);
+        const now = Date.now() / 1000;
+
+        if (decoded.exp < now) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            return <Navigate to="/login" state={{ expired: true }} replace />;
+        }
+
+        if (!allowedRoles.includes(user.role)) {
+            return <Navigate to="/login" replace />;
+        }
+
+        return children;
+    } catch (error) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         return <Navigate to="/login" replace />;
     }
-
-    return children;
 };
 
 export default RequireAuth;
