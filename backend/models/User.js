@@ -7,27 +7,54 @@ const User = sequelize.define('User', {
         autoIncrement: true,
         primaryKey: true,
     },
+
     name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
+
     email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: {
-            isEmail: true,
-        },
+        validate: { isEmail: true },
     },
+
     password: {
         type: DataTypes.STRING,
         allowNull: false,
     },
+
+    phone: {
+        type: DataTypes.STRING,
+    },
+
+    address: {
+        type: DataTypes.STRING,
+    },
+
+    city: {
+        type: DataTypes.STRING,
+    },
+
+    state: {
+        type: DataTypes.STRING,
+    },
+
+    country: {
+        type: DataTypes.STRING,
+    },
+
+    postalCode: {
+        type: DataTypes.STRING,
+    },
+
     role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'user', // roles: admin, manager, user
+        defaultValue: 'user',
     },
+
 }, {
     timestamps: true,
 });

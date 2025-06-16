@@ -1,77 +1,100 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 1rem 2rem;
+    justify-content: space-between;
     background: linear-gradient(90deg, #007bff, #0056b3);
+    padding: 1rem 2rem;
     color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-    font-size: 1.5rem;
+.logo a {
+    color: white;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin-right: 1rem;
-}
-
-.nav {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav a {
     text-decoration: none;
-    color: white;
-    font-weight: 500;
-}
-
-.nav a:hover {
-    color: #ffdd57;
 }
 
 .search-form {
     flex: 1;
     display: flex;
     justify-content: center;
-    max-width: 400px;
+    margin: 0 2rem;
+    max-width: 500px;
 }
 
 .search-form input {
-    width: 100%;
     padding: 0.5rem;
-    border-radius: 4px 0 0 4px;
+    flex: 1;
     border: none;
+    border-radius: 4px 0 0 4px;
     outline: none;
+    font-size: 1rem;
 }
 
 .search-form button {
     padding: 0.5rem 1rem;
     border: none;
     background-color: #ffc107;
-    color: #000;
+    color: black;
     font-weight: bold;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
-.search-form button:hover {
-    background-color: #e0a800;
-}
-
-.cart-link {
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     position: relative;
-    font-size: 1.4rem;
 }
 
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    background-color: red;
+.nav a {
     color: white;
-    font-size: 0.75rem;
+    text-decoration: none;
     font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 50%;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-name {
+    cursor: pointer;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 120px;
+    z-index: 10;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0;
+    color: black;
+    cursor: pointer;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+    text-decoration: underline;
+}
+
+.user-menu:hover .user-dropdown {
+    display: flex;
 }
