@@ -16,6 +16,10 @@ const Header = () => {
                 <Link to="/">Home</Link>
                 <Link to="/products">Products</Link>
                 <Link to="/login">Login</Link>
+                <Link to="/cart" className="cart-link">
+                    🛒
+                    <span className="cart-count">0</span>
+                </Link>
             </nav>
         </header>
     );
